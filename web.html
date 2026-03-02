@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortis Labs | Growth-driven design</title>
+    <!-- Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #ffffff;
+            --muted-text: #a1a1a1;
+            --border-color: #1f1f1f;
+            --accent-color: #5555ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 60px;
+            position: absolute;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-links a:after {
+            content: '+';
+            font-size: 12px;
+            color: var(--muted-text);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .availability {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--muted-text);
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .cta-nav {
+            background: white;
+            color: black;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+            position: relative;
+            overflow: hidden;
+            /* Replace the URL below with your 3D render asset */
+            background-image: linear-gradient(to right, rgba(10,10,10,1) 30%, rgba(10,10,10,0) 80%), url('https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center right;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 5;
+        }
+
+        .sub-tag {
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: var(--muted-text);
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        h1 {
+            font-size: 64px;
+            font-weight: 500;
+            line-height: 1.1;
+            margin-bottom: 40px;
+            letter-spacing: -1px;
+        }
+
+        .partner-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .description {
+            max-width: 450px;
+            font-size: 15px;
+            color: var(--muted-text);
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        .cta-main {
+            display: inline-flex;
+            align-items: center;
+            background: white;
+            color: black;
+            padding: 12px 24px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            gap: 15px;
+        }
+
+        .cta-main .arrow {
+            background: #333;
+            color: white;
+            padding: 2px 8px;
+            font-size: 12px;
+        }
+
+        /* Trust/Footer Section */
+        .trust-section {
+            border-top: 1px solid var(--border-color);
+            padding-top: 30px;
+        }
+
+        .trust-label {
+            text-align: center;
+            font-size: 11px;
+            color: var(--muted-text);
+            letter-spacing: 1.5px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .grid-item {
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-right: 1px solid var(--border-color);
+            transition: background 0.3s;
+        }
+
+        .grid-item:last-child {
+            border-right: none;
+        }
+
+        .grid-item:hover {
+            background: #111;
+        }
+
+        .client-logo {
+            font-size: 20px;
+            font-weight: 700;
+            opacity: 0.8;
+        }
+
+        /* Mobile Responsive (Simplified) */
+        @media (max-width: 768px) {
+            h1 { font-size: 40px; }
+            .nav-links, .nav-right { display: none; }
+            .logo-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero { padding: 0 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">FORTIS LABS</div>
+        <div class="nav-links">
+            <a href="#">Services</a>
+            <a href="#">Our Work</a>
+            <a href="#">Company</a>
+            <a href="#">Resources</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="nav-right">
+            <div class="availability"><span class="dot"></span> Available for Q1</div>
+            <a href="#" class="cta-nav">Let's talk growth</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="sub-tag">B2B GROWTH DESIGN AGENCY</span>
+            <h1>Growth-driven design for<br>ambitious tech companies</h1>
+            
+            <div class="partner-row">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5l-3.5-3.5 1.41-1.41L11 13.67l4.59-4.59L17 10.5 11 16.5z"/></svg>
+                Enterprise Partner
+            </div>
+            
+            <p class="description">
+                Helping tech teams grow with scalable design systems and strategic development. 
+                From high-converting SaaS websites and product design to growth engines.
+            </p>
+            
+            <a href="#" class="cta-main">
+                Let's talk growth <span class="arrow">→</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="trust-section">
+        <div class="trust-label">Trusted by 100+ tech market leaders</div>
+        <div class="logo-grid">
+            <div class="grid-item"><div class="client-logo">TUTLO</div></div>
+            <div class="grid-item"><div class="client-logo">JACE</div></div>
+            <div class="grid-item"><div class="client-logo">GENTRACE</div></div>
+            <div class="grid-item"><div class="client-logo">ADAPT</div></div>
+            <div class="grid-item"><div class="client-logo">INVEN</div></div>
+        </div>
+    </section>
+
+</body>
+</html>
