@@ -487,7 +487,163 @@
             font-size: 12px; color: var(--muted-text);
         }
 
+        /* ── BOOKING MODAL ───────────────────────────── */
+        .modal-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(6px);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.open { display: flex; }
+
+        .modal {
+            background: #0d0d0d;
+            border: 1px solid var(--border-color);
+            width: 100%;
+            max-width: 560px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalIn 0.25s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            padding: 36px 44px 28px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .modal-header-text {}
+        .modal-header .section-label { margin-bottom: 8px; }
+        .modal-header h3 {
+            font-size: 26px; font-weight: 400;
+            letter-spacing: -0.5px; line-height: 1.2;
+        }
+        .modal-close {
+            background: none; border: none;
+            color: var(--muted-text); font-size: 22px;
+            cursor: pointer; padding: 4px;
+            line-height: 1; transition: color 0.2s;
+            flex-shrink: 0; margin-left: 20px; margin-top: 2px;
+        }
+        .modal-close:hover { color: white; }
+
+        .modal-body { padding: 36px 44px; display: flex; flex-direction: column; gap: 24px; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-group.full { grid-column: 1 / -1; }
+
+        .form-group label {
+            font-size: 11px; letter-spacing: 1.5px;
+            text-transform: uppercase; color: var(--muted-text);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: #111;
+            border: 1px solid var(--border-color);
+            color: white;
+            padding: 13px 16px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: border-color 0.2s;
+            width: 100%;
+            border-radius: 0;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-color);
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: #444; }
+
+        .form-group select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+        .form-group select option { background: #111; }
+
+        .form-group textarea { resize: vertical; min-height: 90px; }
+
+        .form-divider {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 4px 0;
+        }
+
+        .modal-footer {
+            padding: 0 44px 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .modal-note {
+            font-size: 12px; color: var(--muted-text); line-height: 1.5;
+        }
+
+        .btn-send {
+            display: inline-flex; align-items: center; gap: 12px;
+            background: white; color: black;
+            padding: 13px 24px;
+            border: none; cursor: pointer;
+            font-size: 14px; font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            transition: background 0.2s, color 0.2s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .btn-send:hover { background: var(--accent-color); color: white; }
+        .btn-send .arrow {
+            background: #333; color: white;
+            padding: 2px 7px; font-size: 11px;
+            transition: background 0.2s;
+        }
+        .btn-send:hover .arrow { background: rgba(255,255,255,0.25); }
+
+        .modal-success {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 44px;
+            gap: 16px;
+        }
+        .modal-success.show { display: flex; }
+        .success-icon {
+            width: 52px; height: 52px;
+            border: 1px solid #00e676;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #00e676; font-size: 22px; margin-bottom: 8px;
+        }
+        .modal-success h4 { font-size: 22px; font-weight: 400; letter-spacing: -0.3px; }
+        .modal-success p { font-size: 14px; color: var(--muted-text); max-width: 320px; line-height: 1.7; }
+
         /* ── MOBILE ───────────────────────────────────── */
+        @media (max-width: 600px) {
+            .modal-header, .modal-body, .modal-footer { padding-left: 24px; padding-right: 24px; }
+            .form-row { grid-template-columns: 1fr; }
+            .modal-footer { flex-direction: column; align-items: stretch; }
+            .btn-send { justify-content: center; }
+        }
+
         @media (max-width: 900px) {
             h1 { font-size: 40px; }
             h2 { font-size: 34px; }
@@ -523,7 +679,7 @@
         </div>
         <div class="nav-right">
             <div class="availability"><span class="dot"></span> Available for new projects</div>
-            <a href="#contact" class="cta-nav">Book a call</a>
+            <a href="#contact" class="cta-nav" data-book>Book a call</a>
         </div>
     </nav>
 
@@ -540,7 +696,7 @@
                 Fortis Labs builds intelligent automation solutions that streamline, simplify, and accelerate complex workflows — so your team can focus on what moves the needle.
             </p>
             <div class="hero-ctas">
-                <a href="#contact" class="cta-main">Start automating <span class="arrow">→</span></a>
+                <a href="#" class="cta-main" data-book>Start automating <span class="arrow">→</span></a>
                 <a href="#solutions" class="cta-secondary">See our solutions</a>
             </div>
         </div>
@@ -854,7 +1010,7 @@
         <h2>Ready to automate<br>your operations?</h2>
         <p>Book a free 30-minute discovery call. We'll identify your highest-impact automation opportunities and give you a clear picture of what's possible.</p>
         <div class="cta-group">
-            <a href="mailto:hello@fortislabs.io" class="cta-main">Book a discovery call <span class="arrow">→</span></a>
+            <a href="#" class="cta-main" data-book>Book a discovery call <span class="arrow">→</span></a>
             <a href="#services" class="cta-secondary">Explore services</a>
         </div>
     </section>
@@ -903,8 +1059,171 @@
                 <span class="dot"></span>
                 Available for new projects
             </div>
-        </div>
+            </div>
     </footer>
+
+    <!-- BOOKING MODAL -->
+    <div class="modal-overlay" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-header-text">
+                    <span class="section-label">Book a discovery call</span>
+                    <h3 id="modalTitle">Let's find a time<br>that works for you</h3>
+                </div>
+                <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+            </div>
+
+            <div id="modalForm">
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First name</label>
+                            <input type="text" id="firstName" placeholder="Jane" />
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last name</label>
+                            <input type="text" id="lastName" placeholder="Smith" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your email</label>
+                        <input type="email" id="email" placeholder="jane@company.com" />
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone number</label>
+                        <input type="tel" id="phone" placeholder="+1 (555) 000-0000" />
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" placeholder="Your company name" />
+                    </div>
+                    <hr class="form-divider" />
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="prefDate">Preferred date</label>
+                            <input type="date" id="prefDate" />
+                        </div>
+                        <div class="form-group">
+                            <label for="prefTime">Preferred time</label>
+                            <select id="prefTime">
+                                <option value="" disabled selected>Select a slot</option>
+                                <option>09:00 – 09:30</option>
+                                <option>09:30 – 10:00</option>
+                                <option>10:00 – 10:30</option>
+                                <option>10:30 – 11:00</option>
+                                <option>11:00 – 11:30</option>
+                                <option>11:30 – 12:00</option>
+                                <option>13:00 – 13:30</option>
+                                <option>13:30 – 14:00</option>
+                                <option>14:00 – 14:30</option>
+                                <option>14:30 – 15:00</option>
+                                <option>15:00 – 15:30</option>
+                                <option>15:30 – 16:00</option>
+                                <option>16:00 – 16:30</option>
+                                <option>16:30 – 17:00</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="altDate">Alternative date &amp; time <span style="color:#444;font-weight:400;letter-spacing:0">(optional)</span></label>
+                        <input type="text" id="altDate" placeholder="e.g. Friday 14 March, afternoon" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message">What would you like to automate? <span style="color:#444;font-weight:400;letter-spacing:0">(optional)</span></label>
+                        <textarea id="message" placeholder="Brief description of your workflows or goals..."></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <p class="modal-note">We'll confirm your slot within one business day.<br>The call is free and lasts 30 minutes.</p>
+                    <button class="btn-send" id="sendBtn">Send request <span class="arrow">&#8594;</span></button>
+                </div>
+            </div>
+
+            <div class="modal-success" id="modalSuccess">
+                <div class="success-icon">&#10003;</div>
+                <h4>Request sent!</h4>
+                <p>We've received your booking request and will confirm your slot within one business day. Check your inbox for a confirmation.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal    = document.getElementById('bookingModal');
+        const closeBtn = document.getElementById('modalClose');
+        const sendBtn  = document.getElementById('sendBtn');
+
+        function openModal() {
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+        closeBtn.addEventListener('click', closeModal);
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+        document.querySelectorAll('[data-book]').forEach(function(btn) {
+            btn.addEventListener('click', function(e) { e.preventDefault(); openModal(); });
+        });
+
+        var dateInput = document.getElementById('prefDate');
+        dateInput.setAttribute('min', new Date().toISOString().split('T')[0]);
+
+        sendBtn.addEventListener('click', function() {
+            var firstName = document.getElementById('firstName').value.trim();
+            var lastName  = document.getElementById('lastName').value.trim();
+            var email     = document.getElementById('email').value.trim();
+            var phone     = document.getElementById('phone').value.trim();
+            var company   = document.getElementById('company').value.trim();
+            var prefDate  = document.getElementById('prefDate').value;
+            var prefTime  = document.getElementById('prefTime').value;
+            var altDate   = document.getElementById('altDate').value.trim();
+            var message   = document.getElementById('message').value.trim();
+
+            if (!firstName || !lastName || !email || !phone || !prefDate || !prefTime) {
+                var missing = [];
+                if (!firstName || !lastName) missing.push('full name');
+                if (!email)    missing.push('email');
+                if (!phone)    missing.push('phone number');
+                if (!prefDate) missing.push('preferred date');
+                if (!prefTime) missing.push('preferred time');
+                alert('Please fill in: ' + missing.join(', ') + '.');
+                return;
+            }
+
+            var formattedDate = new Date(prefDate + 'T12:00:00').toLocaleDateString('en-GB', {
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+            });
+
+            var subject = encodeURIComponent('Discovery Call Request — ' + firstName + ' ' + lastName);
+            var bodyText = 'New Discovery Call Request\n'
+                + '===========================\n\n'
+                + 'Name:     ' + firstName + ' ' + lastName + '\n'
+                + 'Email:    ' + email + '\n'
+                + 'Phone:    ' + phone + '\n'
+                + 'Company:  ' + (company || 'Not provided') + '\n\n'
+                + 'PREFERRED SLOT\n'
+                + '--------------\n'
+                + 'Date:     ' + formattedDate + '\n'
+                + 'Time:     ' + prefTime + ' (client local time)\n'
+                + (altDate ? 'Alternative: ' + altDate + '\n' : '')
+                + '\nABOUT THEIR NEEDS\n'
+                + '-----------------\n'
+                + (message || 'No details provided.') + '\n\n'
+                + '---\nSent via the Fortis Labs booking form.';
+
+            window.location.href = 'mailto:contact@fortislabs.xyz?subject=' + subject + '&body=' + encodeURIComponent(bodyText);
+
+            setTimeout(function() {
+                document.getElementById('modalForm').style.display = 'none';
+                document.getElementById('modalSuccess').classList.add('show');
+            }, 700);
+        });
+    </script>
 
 </body>
 </html>
